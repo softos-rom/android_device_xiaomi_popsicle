@@ -1,0 +1,20 @@
+# SoftOS (popsicle_tr): stok Xiaomi vibratorfeature HAL (Cirrus CS40L26).
+# Stok vendor_sepolicy.cil'den yalnız gerekenler. input_device, hal_audio istemcisi,
+# vendor_audio_prop, libsoc_helper, wakelock ve persist haptik dosyalarını OKUMA
+# device/qcom/sepolicy_vndr/sm8850 (generic+qva) politikasında zaten var.
+# vendor_persist_haptics_file / mnt_vendor_file için YAZMA izni bilerek verilmez.
+
+# cs40l26 kalibrasyon düğümleri (/sys/bus/i2c/drivers/cs40l26/13-0043/input/inputN/calibration/*)
+# genfs etiketi yok → sysfs (stokta da böyle)
+allow hal_vibrator_default sysfs:dir r_dir_perms;
+allow hal_vibrator_default sysfs:file rw_file_perms;
+
+# /sys/kernel/snd_card/card_state (ses kartı hazır mı — PAL haptik akışı öncesi)
+allow hal_vibrator_default vendor_sysfs_sndcard:file r_file_perms;
+
+# PAL/tinyalsa ses haptik yolu
+allow hal_vibrator_default proc_asound:dir search;
+allow hal_vibrator_default audio_device:dir search;
+
+# Xiaomi olay günlüğü (/dev/miev): stokta da izin yok → yalnız günlük gürültüsü susturulur (SoftOS 2 madde 8)
+dontaudit hal_vibrator_default vendor_miev_device:chr_file { open write };

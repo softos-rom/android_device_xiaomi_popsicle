@@ -1,0 +1,12 @@
+# SoftOS (popsicle_tr) — SoftOS 2 taraması (2026-11-18): stokta da izin verilmeyen, işlevi etkilemeyen
+# denemeler. İzin VERİLMEZ, yalnız denetim günlüğü susturulur (pil/log gürültüsü).
+# Madde 8: Xiaomi olay günlüğü
+dontaudit hal_audio_default vendor_miev_device:chr_file { open write };
+# Madde 9: ortak ağacın system.prop'undaki persist.data.df.* / persist.rmnet.* (stokta da etiketsiz, default_prop)
+dontaudit rild default_prop:file { read open getattr map };
+dontaudit hal_audio_default default_prop:file { read open getattr map };
+# Madde 11: kamera HAL'inin hata ayıklama dökümü (/data/local/tmp) ve ekran güç durumu (dpms) denemeleri
+dontaudit hal_camera_default shell_data_file:dir search;
+dontaudit hal_camera_default sysfs:file { read open getattr };
+# Madde 12: Widevine HAL'inin kabuk çalıştırma denemesi
+dontaudit hal_drm_widevine shell_exec:file { execute read open getattr map };

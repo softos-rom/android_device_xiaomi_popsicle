@@ -49,7 +49,7 @@ blob_fixups: blob_fixups_user_type = {
         'odm/lib64/libAncHumanPreviewBokeh.so',
         'odm/lib64/libarcsoft_beautyshot.so',
         'odm/lib64/libwa_widelens_undistort.so',
-        'vendor/lib64/libMiPhotoFilter.so'
+        'odm/lib64/libMiPhotoFilter.so'
     ): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_describe')
@@ -115,14 +115,14 @@ blob_fixups: blob_fixups_user_type = {
         "odm/lib64/camera/preloadplugins/com.xiaomi.plugin.offlineyuvsplit.so",
         "odm/lib64/camera/preloadplugins/com.xiaomi.plugin.offlineyuvwarp.so",
         "odm/lib64/com.xiaomi.plugin.ecdengine.so",
-        "vendor/bin/hw/vendor.qti.camera.provider-service_64",
-        "vendor/lib64/camera/components/com.mi.node.fd.so",
-        "vendor/lib64/camera/components/com.qti.node.fd.so",
-        "vendor/lib64/com.xiaomi.stubv1.camx.so",
-        "vendor/lib64/hw/camera.qcom.core.so",
-        "vendor/lib64/libcamxdumpinforecorder.so",
-        "vendor/lib64/libmicamera_hal_core.so",
-        "vendor/lib64/libsimulation.so",
+        "odm/bin/hw/vendor.qti.camera.provider-service_64",
+        "odm/lib64/camera/components/com.mi.node.fd.so",
+        "odm/lib64/camera/components/com.qti.node.fd.so",
+        "odm/lib64/com.xiaomi.stubv1.camx.so",
+        "odm/lib64/hw/camera.qcom.core.so",
+        "odm/lib64/libcamxdumpinforecorder.so",
+        "odm/lib64/libmicamera_hal_core.so",
+        "odm/lib64/libsimulation.so",
     ): blob_fixup()
         .replace_needed(
             'libtinyxml2.so',
@@ -145,7 +145,7 @@ module = ExtractUtilsModule(
     lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
     check_elf=True,
-    add_firmware_proprietary_file=True,
+    add_firmware_proprietary_file=False,  # popsicle_tr: firmware asla pakete girmez
 )
 
 if __name__ == '__main__':

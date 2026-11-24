@@ -5,7 +5,10 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Enable auxiliary cameras selector. -->
-    <bool name="config_enableAuxCameras">true</bool>
+    <!-- SoftOS (popsicle_tr): KAPALI. Yardımcı kameraları (ör. 5) doğrudan açmak HAL'de desteklenmiyor:
+         "Camera 5: Error configuring streams: Function not implemented (-38)" (v6 cihaz, 2026-11-18).
+         Lens seçimi mantıksal kamera 0'ın zoom oranıyla yapılır (aşağıda config_logicalZoomRatios). -->
+    <bool name="config_enableAuxCameras">false</bool>
 
     <!-- Decide whether to ignore auxiliary cameras that
          are logical (made of multiple physical sensors).
@@ -13,7 +16,7 @@
          one or more aux cameras as a standalone camera device.
          Note that you will probably need to add
          more camera IDs to ignoreCameraIds. -->
-    <bool name="config_ignoreLogicalAuxCameras">false</bool>
+    <bool name="config_ignoreLogicalAuxCameras">true</bool>
 
     <!-- An array of triplets made of (camera ID, qualities, frame rates).
          These video modes will be added to the available

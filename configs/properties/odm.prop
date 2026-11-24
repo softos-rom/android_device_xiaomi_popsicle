@@ -12,10 +12,21 @@ vendor.display.enable_brightness_drm_prop=1
 
 # Fingerprint
 persist.vendor.fingerprint.type=udfps
-persist.vendor.fingerprint.sensor_location=600|2320|109
+persist.vendor.fingerprint.sensor_location=596|1984|74
 
 # Marketname
 ro.product.marketname=Xiaomi 17 Pro Max
 
 # USB
 vendor.usb.product_string=Xiaomi 17 Pro Max
+# Vibrator — popsicle_tr: stok odm/etc/build.prop (OS4.0.5) değerleri; stok vibratorfeature HAL okur
+ro.odm.mm.vibrator.sys_path=/sys/bus/i2c/drivers/cs40l26/13-0043
+ro.odm.mm.vibrator.device_type=agm
+ro.odm.mm.vibrator.resonant_frequency=130
+ro.odm.mm.vibrator.audio_haptic_support=true
+ro.odm.mm.vibrator.slide_effect_protect_time=20
+ro.odm.mm.vibrator.cirrus=true
+ro.odm.mm.vibrator.lowPowerMode=true
+
+# Audio — popsicle_tr: OS4.0.6 stok odm (ADSP çökünce ses yolu yeniden kurulur)
+persist.vendor.audio.spf_restart=true

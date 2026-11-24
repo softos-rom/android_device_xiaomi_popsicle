@@ -1,0 +1,49 @@
+# SoftOS (popsicle_tr): stok Xiaomi vibratorfeature HAL (Cirrus CS40L26) — stok
+# odm/etc/init/vendor.xiaomi.hardware.vibratorfeature.service.rc'den süzüldü:
+# persist (/mnt/vendor/persist/...) mkdir/chmod/chown YOK; başka cihazların
+# aw/sih/qcom-haptics satırları YOK. Yalnız cs40l26 kalibrasyon düğümleri + servis.
+
+on late-fs
+    # CIRRUS Haptic: inputN numarası önceden bilinmediği için hepsi denenir (stok gibi)
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input0/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input0/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input1/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input1/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input2/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input2/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input3/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input3/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input4/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input4/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input5/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input5/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input6/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input6/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input7/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input7/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input8/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input8/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input9/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input9/calibration/f0_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input10/calibration/redc_stored
+    chown system system /sys/bus/i2c/drivers/cs40l26/13-0043/input/input10/calibration/f0_stored
+
+service vibratorfeature-hal-service /odm/bin/hw/vendor.xiaomi.hardware.vibratorfeature.service
+    class hal
+    user system
+    group system input audio
+    setenv RICHTAP_DEVICE_PATH /dev/qcom_haptic
+    setenv ENV_RICHTAP_CONFIG_PATH /odm/etc/aac_richtap.config
+
+on property:sys.boot_completed=1
+    setprop vendor.haptic.calibrate.done 1
+    # mode = interaction
+    setprop vendor.aihaptic.interaction.transient_intensity 100
+    setprop vendor.aihaptic.interaction.transient_sharpness 56
+    setprop vendor.aihaptic.interaction.continuous_intensity 100
+    setprop vendor.aihaptic.interaction.continuous_sharpness 56
+    # mode = warn
+    setprop vendor.aihaptic.warn.transient_intensity 100
+    setprop vendor.aihaptic.warn.transient_sharpness 56
+    setprop vendor.aihaptic.warn.continuous_intensity 65
+    setprop vendor.aihaptic.warn.continuous_sharpness 56

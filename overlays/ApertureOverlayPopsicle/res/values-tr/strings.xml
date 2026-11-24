@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SoftOS (popsicle_tr): LineageOS 24'te Türkçesi eksik metinler (2026-11-18) -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="use_photo_jpeg_ultra_hdr_title">Fotoğrafları JPEG Ultra HDR olarak kaydet</string>
+    <string name="use_photo_jpeg_ultra_hdr_summary">HDR fotoğrafları iyileştirmek için mümkünse JPEG Ultra HDR olarak kaydet</string>
+    <string name="enable_raw_image_capture_title">RAW çekimi aç</string>
+    <string name="enable_raw_image_capture_summary">RAW fotoğraf çekimini açar. RAW açıkken fotoğraflar JPEG Ultra HDR olarak kaydedilemez</string>
+    <string name="disable_jpeg_with_raw_title">RAW ile JPEG kaydetme</string>
+    <string name="disable_jpeg_with_raw_summary">RAW çekimi açıkken JPEG dosyası oluşturma</string>
+</resources>
